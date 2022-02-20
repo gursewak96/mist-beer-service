@@ -1,1 +1,2 @@
-# mist-beer-service
+# Mist Beer Service
+Spring boot microservice
