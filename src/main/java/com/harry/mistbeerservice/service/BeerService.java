@@ -2,6 +2,8 @@ package com.harry.mistbeerservice.service;
 
 
 import com.harry.mistbeerservice.web.model.BeerDto;
+import org.springframework.stereotype.Service;
+
 
 import java.util.UUID;
 

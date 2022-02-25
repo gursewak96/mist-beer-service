@@ -3,11 +3,16 @@ package com.harry.mistbeerservice.web.controller;
 import com.harry.mistbeerservice.service.BeerService;
 import com.harry.mistbeerservice.web.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -17,7 +22,7 @@ public class BeerController {
 
     private final BeerService beerService;
 
-    public BeerController(BeerService beerService){
+    public BeerController(BeerService beerService) {
         this.beerService = beerService;
     }
 
@@ -28,7 +33,7 @@ public class BeerController {
     }
 
     @PostMapping("/")
-    public ResponseEntity handlePost(@RequestBody BeerDto beerDto){
+    public ResponseEntity handlePost(@RequestBody @Valid BeerDto beerDto){
         BeerDto savedBeer = beerService.saveNewBeer(beerDto);
         HttpHeaders headers = new HttpHeaders();
         //TODO - add url hostname
@@ -37,7 +42,7 @@ public class BeerController {
 
     }
     @PutMapping("/{beerId}")
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId,@RequestBody  BeerDto beerDto){
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId,@RequestBody @Valid BeerDto beerDto){
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -48,4 +53,6 @@ public class BeerController {
         log.debug("deleting a beer object...");
         beerService.deleteById(beerId);
     }
+
+
 }

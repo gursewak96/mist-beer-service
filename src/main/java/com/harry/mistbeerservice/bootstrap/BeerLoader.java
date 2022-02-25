@@ -22,14 +22,14 @@ public class BeerLoader implements CommandLineRunner {
 
     private void loadBeerObjects(){
         if(beerRepository.count() == 0){
-           beerRepository.save(Beer.builder()
-                            .beerName("Mango Bob")
-                            .beerStyle("IPA")
-                            .quantityToBrew(200)
-                           .minOnHand(12)
-                           .price(new BigDecimal("12.96"))
-                            .upc(337020928348L)
-                            .build());
+            beerRepository.save(Beer.builder()
+                    .beerName("Mango Bob")
+                    .beerStyle("IPA")
+                    .quantityToBrew(200)
+                    .minOnHand(12)
+                    .price(new BigDecimal("12.96"))
+                    .upc(337020928348L)
+                    .build());
             beerRepository.save(Beer.builder()
                     .beerName("Galaxy Bob")
                     .beerStyle("PALE_ALE")

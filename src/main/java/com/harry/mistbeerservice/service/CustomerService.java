@@ -2,8 +2,10 @@ package com.harry.mistbeerservice.service;
 
 
 import com.harry.mistbeerservice.web.model.CustomerDto;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+
 
 public interface CustomerService {
     public CustomerDto getCustomerById(UUID customerid);
