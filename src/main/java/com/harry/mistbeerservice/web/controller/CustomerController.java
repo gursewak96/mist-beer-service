@@ -30,7 +30,7 @@ public class CustomerController {
     public ResponseEntity handlePost(@RequestBody CustomerDto customerDto){
         CustomerDto savedCustomer = customerService.saveCustomer(customerDto);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("headers","/api/v1/beer"+savedCustomer.getId().toString());
+        headers.add("location","/api/v1/beer"+savedCustomer.getId().toString());
         return new ResponseEntity(headers,HttpStatus.OK);
     }
 
