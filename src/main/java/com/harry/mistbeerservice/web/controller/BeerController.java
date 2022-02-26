@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
@@ -33,7 +34,7 @@ public class BeerController {
     }
 
     @PostMapping("/")
-    public ResponseEntity handlePost(@RequestBody @Valid BeerDto beerDto){
+    public ResponseEntity handlePost(@RequestBody @Validated BeerDto beerDto){
         BeerDto savedBeer = beerService.saveNewBeer(beerDto);
         HttpHeaders headers = new HttpHeaders();
         //TODO - add url hostname
@@ -42,7 +43,7 @@ public class BeerController {
 
     }
     @PutMapping("/{beerId}")
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId,@RequestBody @Valid BeerDto beerDto){
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId,@RequestBody @Validated BeerDto beerDto){
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
